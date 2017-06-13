@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+def AppId = "VnHOnXXhTjRBYNhVhAS99itP-gzGzoHsz"
+def AppKey = "lJJBbQhuAVxn30loNFiYwo5L"
+def MasterKey = "M62VFAL0wd0hL1iy3qtVYl0o"
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+//    packagingOptions{
+//        exclude 'META-INF/LICENSE.txt'
+//        exclude 'META-INF/NOTICE.txt'
+//    }
+    defaultConfig {
+        applicationId "indi.aljet.testleancloud"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        buildConfigField("String","AppID","\"${AppId}\"")
+        buildConfigField("String","AppKey","\"${AppKey}\"")
+        buildConfigField("String","MasterKey","\"${MasterKey}\"")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/avoscloud-sdk-v4.2.0.jar')
+    compile files('libs/fastjson-1.2.30.jar')
+    compile files('libs/okhttp-3.8.0.jar')
+    compile files('libs/okio-1.13.0.jar')
+    compile files('libs/avoscloud-push-v4.2.0.jar')
+    compile files('libs/avoscloud-statistics-v4.2.0.jar')
+    compile files('libs/Java-WebSocket-1.3.2-leancloud.jar')
+    compile files('libs/protobuf-java-2.6.1.jar')
+}
